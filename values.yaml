@@ -32,7 +32,7 @@ backup:
   enabled: true
   schedule: "0 2 * * *"   # daily 2 AM
   bucket: clickhouse-backups
-  endpoint: https://minio:9000
+  endpoint: https://minio.ldc.opstree.dev:9000
   accessKey: minioadmin
   secretKey: opstreeadmin@2510
 
