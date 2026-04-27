@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickhouse-config
+data:
+  z-overrides.xml: |
+    <clickhouse>
+        <logger>
+            <level>information</level>
+            <console>1</console>
+        </logger>
+
+        <max_server_memory_usage>1500000000</max_server_memory_usage>
+
+        <prometheus>
+            <endpoint>/metrics</endpoint>
+            <port>9116</port>
+        </prometheus>
+    </clickhouse>
