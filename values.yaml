@@ -1,0 +1,42 @@
+image:
+  repository: clickhouse/clickhouse-server
+  tag: 25.8
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8123
+  tcpPort: 9000
+
+storage:
+  size: 10Gi
+  className: standard
+
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "500m"
+  limits:
+    memory: "2Gi"
+    cpu: "1"
+
+clickhouse:
+  db: prod_db
+  user: db_admin
+  password: admin123
+
+  maxMemoryUsage: 1000000000
+  maxThreads: 4
+
+backup:
+  enabled: true
+  schedule: "0 2 * * *"   # daily 2 AM
+  bucket: clickhouse-backups
+  endpoint: https://minio:9000
+  accessKey: minioadmin
+  secretKey: opstreeadmin@2510
+
+cleanup:
+  enabled: true
+  schedule: "0 3 * * *"   # daily cleanup
+  logRetentionDays: 3
